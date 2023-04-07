@@ -12,4 +12,4 @@ def get_all_record_from_snowFlake():
   
   my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
   my_data_rows= get_all_record_from_snowFlake()
-  streamlit.dataframe(my_data_rows)
+  df = streamlit.dataframe(my_data_rows)
