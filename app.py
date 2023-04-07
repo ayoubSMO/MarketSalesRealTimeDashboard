@@ -4,7 +4,8 @@ import requests
 import snowflake.connector
 from urllib.error import URLError
 from streamlit_autorefresh import st_autorefresh
-from streamlit_elements import elements, mui, html, sync
+from streamlit_elements import elements, mui, html, sync,editor, lazy,nivo
+
 
 
 # Function that fetch all data from snowflake table 
@@ -20,85 +21,68 @@ data.columns = ["Invoice ID","Branch","City","Customer_type","Gender","Product l
 df = st.dataframe(data)
 
 
-with elements("callbacks_lazy"):
 
-    # With the two first examples, each time you input a letter into the text field,
-    # the callback is invoked but the whole app is reloaded as well.
-    #
-    # To avoid reloading the whole app on every input, you can wrap your callback with
-    # lazy(). This will defer the callback invocation until another non-lazy callback
-    # is invoked. This can be useful to implement forms.
 
-    from streamlit_elements import lazy
+with elements("nivo_charts"):
 
-    if "first_name" not in st.session_state:
-        st.session_state.first_name = None
-        st.session_state.last_name = None
+    # Streamlit Elements includes 45 dataviz components powered by Nivo.
 
-    if st.session_state.first_name is not None:
-        first_name = st.session_state.first_name.target.value
-    else:
-        first_name = "John"
 
-    if st.session_state.last_name is not None:
-        last_name = st.session_state.last_name.target.value
-    else:
-        last_name = "Doe"
+    DATA = [
+        { "taste": "fruity", "chardonay": 93, "carmenere": 61, "syrah": 114 },
+        { "taste": "bitter", "chardonay": 91, "carmenere": 37, "syrah": 72 },
+        { "taste": "heavy", "chardonay": 56, "carmenere": 95, "syrah": 99 },
+        { "taste": "strong", "chardonay": 64, "carmenere": 90, "syrah": 30 },
+        { "taste": "sunny", "chardonay": 119, "carmenere": 94, "syrah": 103 },
+    ]
 
-    def set_last_name(event):
-        st.session_state.last_name = event
+    with mui.Box(sx={"height": 500}):
+        nivo.Radar(
+            data=DATA,
+            keys=[ "chardonay", "carmenere", "syrah" ],
+            indexBy="taste",
+            valueFormat=">-.2f",
+            margin={ "top": 70, "right": 80, "bottom": 40, "left": 80 },
+            borderColor={ "from": "color" },
+            gridLabelOffset=36,
+            dotSize=10,
+            dotColor={ "theme": "background" },
+            dotBorderWidth=2,
+            motionConfig="wobbly",
+            legends=[
+                {
+                    "anchor": "top-left",
+                    "direction": "column",
+                    "translateX": -50,
+                    "translateY": -40,
+                    "itemWidth": 80,
+                    "itemHeight": 20,
+                    "itemTextColor": "#999",
+                    "symbolSize": 12,
+                    "symbolShape": "circle",
+                    "effects": [
+                        {
+                            "on": "hover",
+                            "style": {
+                                "itemTextColor": "#000"
+                            }
+                        }
+                    ]
+                }
+            ],
+            theme={
+                "background": "#FFFFFF",
+                "textColor": "#31333F",
+                "tooltip": {
+                    "container": {
+                        "background": "#FFFFFF",
+                        "color": "#31333F",
+                    }
+                }
+            }
+        )
 
-    # Display first name and last name
-    mui.Typography("Your first name: ", first_name)
-    mui.Typography("Your last name: ", last_name)
 
-    # Lazily synchronize onChange with first_name and last_name state.
-    # Inputting some text won't synchronize the value yet.
-    mui.TextField(label="First name", onChange=lazy(sync("first_name")))
-
-    # You can also pass regular python functions to lazy().
-    mui.TextField(label="Last name", onChange=lazy(set_last_name))
-
-    # Here we give a non-lazy callback to onClick using sync().
-    # We are not interested in getting onClick event data object,
-    # so we call sync() with no argument.
-    #
-    # You can use either sync() or a regular python function.
-    # As long as the callback is not wrapped with lazy(), its invocation will
-    # also trigger every other defered callbacks.
-    mui.Button("Update first namd and last name", onClick=sync())
-
-with elements("monaco_editors"):
-
-    # Streamlit Elements embeds Monaco code and diff editor that powers Visual Studio Code.
-    # You can configure editor's behavior and features with the 'options' parameter.
-    #
-    # Streamlit Elements uses an unofficial React implementation (GitHub links below for
-    # documentation).
-
-    from streamlit_elements import editor
-
-    if "content" not in st.session_state:
-        st.session_state.content = "Default value"
-
-    mui.Typography("Content: ", st.session_state.content)
-
-    def update_content(value):
-        st.session_state.content = value
-
-    editor.Monaco(
-        height=300,
-        defaultValue=st.session_state.content,
-        onChange=lazy(update_content)
-    )
-
-    mui.Button("Update content", onClick=sync())
-
-    editor.MonacoDiff(
-        original="Happy Streamlit-ing!",
-        modified="Happy Streamlit-in' with Elements!",
-        height=300,
-    )
 
 st_autorefresh(interval=2000, limit=100, key="dataframe")
 
