@@ -67,8 +67,7 @@ df_selection = data.query(
     "City == @city & Customer_type == @customer_type & Gender == @gender"
 )
 
-hh = df_selection.astype(str).groupby(by=["Product line"]).dtypes
-hh
+
 # ---- MAINPAGE ----
 st.title(":bar_chart: Market Sales Dashboard")
 st.markdown("##")
@@ -98,10 +97,13 @@ df = st.dataframe(data)
 
 st.markdown("""---""")
 
+new_groupe = df_selection.astype(str).groupby(by=["Product line"])
+new_groupe["Total"]=new_groupe["Total"].astype(float)
+new_groupe["Product line"]=new_groupe["Product line"].astype(str)
 
 # SALES BY PRODUCT LINE [BAR CHART]
 sales_by_product_line = (
-     df_selection.astype(str).groupby(by=["Product line"]).sum()[["Total"]].sort_values(by="Total")
+     new_groupe.sum()[["Total"]].sort_values(by="Total")
 )
 fig_product_sales = px.bar(
     sales_by_product_line,
