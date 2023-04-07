@@ -66,6 +66,7 @@ with right_column:
     st.subheader(f"US $ {average_sale_by_transaction}")
 
 
+st.markdown("##")
 
 
 df = st.dataframe(data)
