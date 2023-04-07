@@ -62,5 +62,22 @@ with elements("multiple_children"):
         mui.icon.DoubleArrow()
         mui.Typography("Button with multiple children")
 
+
+with elements("nested_children"):
+
+    # You can nest children using multiple 'with' statements.
+    #
+    # <Paper>
+    #   <Typography>
+    #     <p>Hello world</p>
+    #     <p>Goodbye world</p>
+    #   </Typography>
+    # </Paper>
+
+    with mui.Paper:
+        with mui.Typography:
+            html.p("Hello world")
+            html.p("Goodbye world")
+
 st_autorefresh(interval=2000, limit=100, key="dataframe")
 
