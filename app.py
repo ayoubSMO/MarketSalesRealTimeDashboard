@@ -98,7 +98,9 @@ df = st.dataframe(data)
 st.markdown("""---""")
 
 new_groupe = df_selection.astype(str).groupby(by=["Product line"])
+
 new_group = pd.DataFrame(data = new_groupe)
+new_group.columns = ["Invoice ID","Branch","City","Customer_type","Gender","Product line","Unit price","Quantity","Tax 5%","Total","Date","Time","Payment","cogs","gross margin percentage","gross income","Rating"]
 new_group
 new_group["Total"]=new_group["Total"].astype(float)
 new_group["Product line"]=new_group["Product line"].astype(str)
