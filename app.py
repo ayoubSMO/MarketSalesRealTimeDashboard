@@ -27,6 +27,23 @@ json_list = json.loads(data.to_json(orient='records'))
 data["hour"] = pd.to_datetime(data["Time"]).dt.hour
 data["hour"] = data["hour"].astype(int)
 
+data["Invoice ID"] =data["Invoice ID"].astype(str)
+data["Branch"]=data["Branch"].astype(str)
+data["City"]=data["City"].astype(str)
+data["Customer_type"]=data["Customer_type"].astype(str)
+data["Gender"]=data["Gender"].astype(str)
+data["Product line"]=data["Product line"].astype(str)
+data["Unit price"]=data["Unit price"].astype(float)
+data["Quantity"]=data["Quantity"].astype(int)
+data["Tax 5%"]=data["Tax 5%"].astype(float)
+data["Total"]=data["Total"].astype(float)
+data["Payment"]=data["Payment"].astype(str)
+data["cogs"]=data["cogs"].astype(float)
+data["gross margin percentage"]=data["gross margin percentage"].astype(float)
+data["Rating"]=data["Rating"].astype(float)
+
+
+
 st.sidebar.header("Please Filter Here:")
 city = st.sidebar.multiselect(
     "Select the City:",
