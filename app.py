@@ -38,7 +38,7 @@ with elements("nivo_charts"):
         nivo.Radar(
             data=json_list,
             keys=["Invoice ID","Branch","City","Customer_type","Gender","Product line","Unit price","Quantity","Tax 5%","Total","Date","Time","Payment","cogs","gross margin percentage","gross income","Rating"],
-            indexBy="Gender",
+            indexBy=["Male" , "Female"],
             valueFormat=">-.2f",
             margin={ "top": 70, "right": 80, "bottom": 40, "left": 80 },
             borderColor={ "from": "color" },
