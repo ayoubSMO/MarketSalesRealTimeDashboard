@@ -45,6 +45,7 @@ gender = st.sidebar.multiselect(
 df_selection = data.query(
     "City == @city & Customer_type == @customer_type & Gender == @gender"
 )
+df = st.dataframe(data)
 
 # ---- MAINPAGE ----
 st.title(":bar_chart: Sales Dashboard")
