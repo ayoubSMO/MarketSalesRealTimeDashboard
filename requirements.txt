@@ -2,3 +2,4 @@
 snowflake-connector-python
 streamlit_autorefresh
 streamlit_apexjs
+streamlit_apex_charts
