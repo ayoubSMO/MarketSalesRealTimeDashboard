@@ -7,6 +7,7 @@ from urllib.error import URLError
 from streamlit_autorefresh import st_autorefresh
 from streamlit_elements import elements, mui, html, sync,editor, lazy,nivo
 import plotly.express as px  # pip install plotly-express
+import numpy as np 
 
 
 st.set_page_config(page_title="Market Sales Dashboard", page_icon=":bar_chart:", layout="wide")
@@ -97,9 +98,11 @@ df = st.dataframe(data)
 
 st.markdown("""---""")
 
-new_groupe = df_selection.astype(str).groupby(by=["Product line"]).dtypes
+new_groupe = df_selection.astype(str).groupby(by=["Product line"])
 
+new_groupe = np.asarray(new_groupe)
 new_groupe
+
 new_groupe["Total"]=new_groupe["Total"].astype(float)
 new_groupe["Product line"]=new_groupe["Product line"].astype(str)
 
