@@ -22,6 +22,7 @@ data.columns = ["Invoice ID","Branch","City","Customer_type","Gender","Product l
 df = st.dataframe(data)
 json_list = json.loads(data.to_json(orient='records'))
 
+"""
 with elements("nivo_charts"):
 
     # Streamlit Elements includes 45 dataviz components powered by Nivo.
@@ -80,7 +81,7 @@ with elements("nivo_charts"):
                 }
             }
         )
-
+"""
 
 st.line_chart(json_list)
 st_autorefresh(interval=2000, limit=100, key="dataframe")
