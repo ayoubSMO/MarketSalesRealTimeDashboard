@@ -108,7 +108,7 @@ new_groupe["Product line"]=new_groupe["Product line"].astype(str)
 
 # SALES BY PRODUCT LINE [BAR CHART]
 sales_by_product_line = (
-     new_groupe.sum()[["Total"]].sort_values(by="Total")
+     new_groupe.aggregate(np.sum)[["Total"]].sort_values(by="Total")
 )
 fig_product_sales = px.bar(
     sales_by_product_line,
