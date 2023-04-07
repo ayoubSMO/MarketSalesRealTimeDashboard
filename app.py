@@ -100,6 +100,7 @@ st.markdown("""---""")
 
 new_groupe = df_selection.groupby(by=["Product line"])
 
+new_groupe.aggregate(np.sum)
 new_groupe
 
 new_groupe["Total"]=new_groupe["Total"].astype(float)
