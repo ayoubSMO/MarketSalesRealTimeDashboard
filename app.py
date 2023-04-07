@@ -100,10 +100,6 @@ st.markdown("""---""")
 
 new_groupe = df_selection.groupby(by=["Product line"])
 
-new_groupe.aggregate(np.sum)
-new_groupe
-
-
 # SALES BY PRODUCT LINE [BAR CHART]
 sales_by_product_line = (
      new_groupe.aggregate(np.sum)[["Total"]].sort_values(by="Total")
