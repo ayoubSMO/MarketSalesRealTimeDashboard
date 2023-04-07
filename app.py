@@ -99,6 +99,7 @@ st.markdown("""---""")
 
 new_groupe = df_selection.astype(str).groupby(by=["Product line"])
 new_group = pd.DataFrame(data = new_groupe)
+new_group
 new_group["Total"]=new_group["Total"].astype(float)
 new_group["Product line"]=new_group["Product line"].astype(str)
 
