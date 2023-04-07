@@ -46,7 +46,16 @@ df_selection = data.query(
     "City == @city & Customer_type == @customer_type & Gender == @gender"
 )
 
-df_selection
+# ---- MAINPAGE ----
+st.title(":bar_chart: Sales Dashboard")
+st.markdown("##")
+
+# TOP KPI's
+total_sales = int(df_selection.Total.sum())
+average_rating = round(df_selection.Rating.mean(), 1)
+star_rating = ":star:" * int(round(average_rating, 0))
+average_sale_by_transaction = round(df_selection.Total.mean(), 2)
+
 
 st_autorefresh(interval=2000, limit=100, key="dataframe")
 
