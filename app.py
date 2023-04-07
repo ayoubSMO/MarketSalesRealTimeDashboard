@@ -120,3 +120,19 @@ df = st.dataframe(data)
 
 st_autorefresh(interval=2000, limit=100, key="dataframe")
 
+st.markdown( 
+   f""" 
+   <style> 
+   .reportview-container .main .block-container{{ 
+      max-width: 1200px; 
+      padding-top: 3rem; 
+      padding-right: 1rem; 
+      padding-left: 1rem; 
+      padding-bottom: 3rem; 
+      }} 
+      </style> """, 
+      unsafe_allow_html=True 
+      )
+
+
+
