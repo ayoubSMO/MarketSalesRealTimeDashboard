@@ -64,6 +64,10 @@ with middle_column:
 with right_column:
     st.subheader("Average Sales Per Transaction:")
     st.subheader(f"US $ {average_sale_by_transaction}")
+
+
+
+
 df = st.dataframe(data)
 
 
