@@ -98,13 +98,13 @@ df = st.dataframe(data)
 st.markdown("""---""")
 
 new_groupe = df_selection.astype(str).groupby(by=["Product line"])
-new_groupe
-new_groupe["Total"]=new_groupe["Total"].astype(float)
-new_groupe["Product line"]=new_groupe["Product line"].astype(str)
+new_group = pd.DataFrame(data = new_groupe)
+new_group["Total"]=new_group["Total"].astype(float)
+new_group["Product line"]=new_group["Product line"].astype(str)
 
 # SALES BY PRODUCT LINE [BAR CHART]
 sales_by_product_line = (
-     new_groupe.sum()[["Total"]].sort_values(by="Total")
+     new_group.sum()[["Total"]].sort_values(by="Total")
 )
 fig_product_sales = px.bar(
     sales_by_product_line,
