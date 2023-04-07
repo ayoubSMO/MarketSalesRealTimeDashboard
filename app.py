@@ -10,8 +10,6 @@ def get_all_record_from_snowFlake():
     return my_cur.fetchall()
   
   
-  my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-  my_data_rows= get_all_record_from_snowFlake()
-  df = streamlit.dataframe(my_data_rows)
-
-  print('salam')
+my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+my_data_rows= get_all_record_from_snowFlake()
+df = streamlit.dataframe(my_data_rows)
