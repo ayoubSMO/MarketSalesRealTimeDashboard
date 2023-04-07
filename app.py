@@ -9,7 +9,7 @@ from streamlit_elements import elements, mui, html, sync,editor, lazy,nivo
 import plotly.express as px  # pip install plotly-express
 
 
-st.set_page_config(page_title="hh", page_width=1200)
+st.set_page_config(page_title="hh", page_width=800)
 
 
 
