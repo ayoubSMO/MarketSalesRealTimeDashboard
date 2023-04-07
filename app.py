@@ -98,7 +98,7 @@ df = st.dataframe(data)
 
 st.markdown("""---""")
 
-new_groupe = df_selection.astype(str).groupby(by=["Product line"])
+new_groupe = df_selection.groupby(by=["Product line"])
 
 new_groupe = np.asarray(new_groupe)
 new_groupe
