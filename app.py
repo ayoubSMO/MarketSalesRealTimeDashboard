@@ -46,7 +46,7 @@ df_selection = data.query(
 )
 
 df_selection["Total"]
-hh = df_selection["Total"].sum()
+hh = df_selection.loc[:, 'Total'].sum()
 hh
 st_autorefresh(interval=2000, limit=100, key="dataframe")
 
