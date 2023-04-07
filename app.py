@@ -52,9 +52,8 @@ tt
 gg = df_selection['Total'].isnull().sum()
 gg
 
-
 # Check for syntax errors or typos in code
-hh = df_selection.loc[:, 'Total'].sum()
+hh = df_selection.loc[:, 'Total'].astype(float).sum()
 hh
 
 
