@@ -3,4 +3,4 @@ snowflake-connector-python
 streamlit_autorefresh
 streamlit_apexjs
 streamlit-elements==0.1.*
-plotly==4.14.3
+plotly-express
