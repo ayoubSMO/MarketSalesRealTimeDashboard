@@ -50,7 +50,7 @@ df_selection = data.query(
 )
 
 # ---- MAINPAGE ----
-st.title(":bar_chart: Sales Dashboard")
+st.title(":bar_chart:Market Sales Dashboard")
 st.markdown("##")
 
 # TOP KPI's
