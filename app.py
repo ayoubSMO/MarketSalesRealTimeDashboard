@@ -45,11 +45,7 @@ df_selection = data.query(
     "City == @city & Customer_type == @customer_type & Gender == @gender"
 )
 
-hh = int(df_selection["Total"].sum())
-hh
-# ---- MAINPAGE ----
-st.title(":bar_chart: Sales Dashboard")
-st.markdown("##")
+df_selection
 
 st_autorefresh(interval=2000, limit=100, key="dataframe")
 
