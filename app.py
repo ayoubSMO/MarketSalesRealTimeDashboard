@@ -4,7 +4,8 @@ import requests
 import snowflake.connector
 from urllib.error import URLError
 from streamlit_autorefresh import st_autorefresh
-from streamlit_elements import elements, mui, html
+from streamlit_elements import elements, mui, html, sync
+
 
 # Function that fetch all data from snowflake table 
 def get_all_record_from_snowFlake():
@@ -19,35 +20,85 @@ data.columns = ["Invoice ID","Branch","City","Customer_type","Gender","Product l
 df = st.dataframe(data)
 
 
-with elements("callbacks_sync"):
+with elements("callbacks_lazy"):
 
-    # If you just want to store callback parameters into Streamlit's session state
-    # like above, you can also use the special function sync().
+    # With the two first examples, each time you input a letter into the text field,
+    # the callback is invoked but the whole app is reloaded as well.
     #
-    # When an onChange event occurs, the callback is called with an event data object
-    # as argument. In the example below, we are synchronizing that event data object with
-    # the session state item 'my_event'.
-    #
-    # If an event passes more than one parameter, you can synchronize as many session state item
-    # as needed like so:
-    # >>> sync("my_first_param", "my_second_param")
-    #
-    # If you want to ignore the first parameter of an event but keep synchronizing the second,
-    # pass None to sync:
-    # >>> sync(None, "second_parameter_to_keep")
+    # To avoid reloading the whole app on every input, you can wrap your callback with
+    # lazy(). This will defer the callback invocation until another non-lazy callback
+    # is invoked. This can be useful to implement forms.
 
-    from streamlit_elements import sync
+    from streamlit_elements import lazy
 
-    if "my_event" not in st.session_state:
-        st.session_state.my_event = None
+    if "first_name" not in st.session_state:
+        st.session_state.first_name = None
+        st.session_state.last_name = None
 
-    if st.session_state.my_event is not None:
-        text = st.session_state.my_event.target.value
+    if st.session_state.first_name is not None:
+        first_name = st.session_state.first_name.target.value
     else:
-        text = ""
+        first_name = "John"
 
-    mui.Typography(text)
-    mui.TextField(label="Input some text here", onChange=sync("my_event"))
+    if st.session_state.last_name is not None:
+        last_name = st.session_state.last_name.target.value
+    else:
+        last_name = "Doe"
+
+    def set_last_name(event):
+        st.session_state.last_name = event
+
+    # Display first name and last name
+    mui.Typography("Your first name: ", first_name)
+    mui.Typography("Your last name: ", last_name)
+
+    # Lazily synchronize onChange with first_name and last_name state.
+    # Inputting some text won't synchronize the value yet.
+    mui.TextField(label="First name", onChange=lazy(sync("first_name")))
+
+    # You can also pass regular python functions to lazy().
+    mui.TextField(label="Last name", onChange=lazy(set_last_name))
+
+    # Here we give a non-lazy callback to onClick using sync().
+    # We are not interested in getting onClick event data object,
+    # so we call sync() with no argument.
+    #
+    # You can use either sync() or a regular python function.
+    # As long as the callback is not wrapped with lazy(), its invocation will
+    # also trigger every other defered callbacks.
+    mui.Button("Update first namd and last name", onClick=sync())
+
+with elements("monaco_editors"):
+
+    # Streamlit Elements embeds Monaco code and diff editor that powers Visual Studio Code.
+    # You can configure editor's behavior and features with the 'options' parameter.
+    #
+    # Streamlit Elements uses an unofficial React implementation (GitHub links below for
+    # documentation).
+
+    from streamlit_elements import editor
+
+    if "content" not in st.session_state:
+        st.session_state.content = "Default value"
+
+    mui.Typography("Content: ", st.session_state.content)
+
+    def update_content(value):
+        st.session_state.content = value
+
+    editor.Monaco(
+        height=300,
+        defaultValue=st.session_state.content,
+        onChange=lazy(update_content)
+    )
+
+    mui.Button("Update content", onClick=sync())
+
+    editor.MonacoDiff(
+        original="Happy Streamlit-ing!",
+        modified="Happy Streamlit-in' with Elements!",
+        height=300,
+    )
 
 st_autorefresh(interval=2000, limit=100, key="dataframe")
 
