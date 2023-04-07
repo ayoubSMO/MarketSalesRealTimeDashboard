@@ -20,7 +20,6 @@ my_data_rows= get_all_record_from_snowFlake()
 data = pd.DataFrame(my_data_rows) 
 data.columns = ["Invoice ID","Branch","City","Customer_type","Gender","Product line","Unit price","Quantity","Tax 5%","Total","Date","Time","Payment","cogs","gross margin percentage","gross income","Rating"]
 df = st.dataframe(data)
-data["City"]
 json_list = json.loads(data.to_json(orient='records'))
 
 st.sidebar.header("Please Filter Here:")
@@ -45,6 +44,8 @@ gender = st.sidebar.multiselect(
 df_selection = data.query(
     "City == @city & Customer_type == @customer_type & Gender == @gender"
 )
+
+df_selection["Total"].sum()
 
 # ---- MAINPAGE ----
 st.title(":bar_chart: Sales Dashboard")
