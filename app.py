@@ -20,7 +20,9 @@ my_data_rows= get_all_record_from_snowFlake()
 data = pd.DataFrame(my_data_rows) 
 data.columns = ["Invoice ID","Branch","City","Customer_type","Gender","Product line","Unit price","Quantity","Tax 5%","Total","Date","Time","Payment","cogs","gross margin percentage","gross income","Rating"]
 df = st.dataframe(data)
+df["City"]
 json_list = json.loads(data.to_json(orient='records'))
+
 
 city = st.sidebar.multiselect(
     "Select the City:",
@@ -39,5 +41,6 @@ gender = st.sidebar.multiselect(
     options=df["Gender"].unique(),
     default=df["Gender"].unique()
 )
+
 st_autorefresh(interval=2000, limit=100, key="dataframe")
 
