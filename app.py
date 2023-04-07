@@ -26,20 +26,20 @@ json_list = json.loads(data.to_json(orient='records'))
 
 city = st.sidebar.multiselect(
     "Select the City:",
-    options=df["City"].unique(),
-    default=df["City"].unique()
+    options=data["City"].unique(),
+    default=data["City"].unique()
 )
 
 customer_type = st.sidebar.multiselect(
     "Select the Customer Type:",
-    options=df["Customer_type"].unique(),
-    default=df["Customer_type"].unique(),
+    options=data["Customer_type"].unique(),
+    default=data["Customer_type"].unique(),
 )
 
 gender = st.sidebar.multiselect(
     "Select the Gender:",
-    options=df["Gender"].unique(),
-    default=df["Gender"].unique()
+    options=data["Gender"].unique(),
+    default=data["Gender"].unique()
 )
 
 st_autorefresh(interval=2000, limit=100, key="dataframe")
