@@ -19,7 +19,7 @@ my_data_rows= get_all_record_from_snowFlake()
 data = pd.DataFrame(my_data_rows) 
 data.columns = ["Invoice ID","Branch","City","Customer_type","Gender","Product line","Unit price","Quantity","Tax 5%","Total","Date","Time","Payment","cogs","gross margin percentage","gross income","Rating"]
 df = st.dataframe(data)
-
+dataa = df.to_json(orient="records")
 
 
 
@@ -27,9 +27,18 @@ with elements("nivo_charts"):
 
     # Streamlit Elements includes 45 dataviz components powered by Nivo.
 
+
+    dataa = [
+        { "taste": "fruity", "chardonay": 93, "carmenere": 61, "syrah": 114 },
+        { "taste": "bitter", "chardonay": 91, "carmenere": 37, "syrah": 72 },
+        { "taste": "heavy", "chardonay": 56, "carmenere": 95, "syrah": 99 },
+        { "taste": "strong", "chardonay": 64, "carmenere": 90, "syrah": 30 },
+        { "taste": "sunny", "chardonay": 119, "carmenere": 94, "syrah": 103 },
+    ]
+
     with mui.Box(sx={"height": 500}):
         nivo.Radar(
-            data=df["City"],
+            data=DATA,
             keys=[ "chardonay", "carmenere", "syrah" ],
             indexBy="taste",
             valueFormat=">-.2f",
