@@ -82,6 +82,6 @@ with elements("nivo_charts"):
         )
 
 
-st.line_chart(df)
+st.line_chart(json_list)
 st_autorefresh(interval=2000, limit=100, key="dataframe")
 
