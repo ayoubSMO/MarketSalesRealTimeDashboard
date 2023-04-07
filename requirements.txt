@@ -2,4 +2,4 @@
 snowflake-connector-python
 streamlit_autorefresh
 streamlit_apexjs
-streamlit-apex-charts
+streamlit-elements==0.1.*
