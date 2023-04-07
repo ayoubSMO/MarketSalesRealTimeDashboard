@@ -70,7 +70,7 @@ df_selection = data.query(
 
 
 # ---- MAINPAGE ----
-st.title(":bar_chart: hhhhhhhhhKHALID_AITZIhhhhhhhhh")
+st.title(":bar_chart: Market Sales Dashboard")
 st.markdown("##")
 
 # TOP KPI's
