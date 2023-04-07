@@ -21,7 +21,7 @@ data = pd.DataFrame(my_data_rows)
 data.columns = ["Invoice ID","Branch","City","Customer_type","Gender","Product line","Unit price","Quantity","Tax 5%","Total","Date","Time","Payment","cogs","gross margin percentage","gross income","Rating"]
 df = st.dataframe(data)
 json_list = json.loads(data.to_json(orient='records'))
-
+json_list
 with elements("nivo_charts"):
 
     # Streamlit Elements includes 45 dataviz components powered by Nivo.
