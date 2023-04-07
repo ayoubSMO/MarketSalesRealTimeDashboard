@@ -1,4 +1,4 @@
-import streamlit
+import streamlit as st
 import pandas as pd
 import requests
 import snowflake.connector
@@ -19,89 +19,35 @@ data.columns = ["Invoice ID","Branch","City","Customer_type","Gender","Product l
 df = streamlit.dataframe(data)
 
 
-with elements("properties"):
+with elements("callbacks_sync"):
 
-    # You can add properties to elements with named parameters.
+    # If you just want to store callback parameters into Streamlit's session state
+    # like above, you can also use the special function sync().
     #
-    # To find all available parameters for a given element, you can
-    # refer to its related documentation on mui.com for MUI widgets,
-    # on https://microsoft.github.io/monaco-editor/ for Monaco editor,
-    # and so on.
+    # When an onChange event occurs, the callback is called with an event data object
+    # as argument. In the example below, we are synchronizing that event data object with
+    # the session state item 'my_event'.
     #
-    # <Paper elevation={3} variant="outlined" square>
-    #   <TextField label="My text input" defaultValue="Type here" variant="outlined" />
-    # </Paper>
-
-    with mui.Paper(elevation=3, variant="outlined", square=True):
-        mui.TextField(
-            label="My text input",
-            defaultValue="Type here",
-            variant="outlined",
-        )
-
-    # If you must pass a parameter which is also a Python keyword, you can append an
-    # underscore to avoid a syntax error.
+    # If an event passes more than one parameter, you can synchronize as many session state item
+    # as needed like so:
+    # >>> sync("my_first_param", "my_second_param")
     #
-    # <Collapse in />
+    # If you want to ignore the first parameter of an event but keep synchronizing the second,
+    # pass None to sync:
+    # >>> sync(None, "second_parameter_to_keep")
 
-    mui.Collapse(in_=True)
+    from streamlit_elements import sync
 
-    # mui.collapse(in=True)
-    # > Syntax error: 'in' is a Python keyword:
+    if "my_event" not in st.session_state:
+        st.session_state.my_event = None
 
+    if st.session_state.my_event is not None:
+        text = st.session_state.my_event.target.value
+    else:
+        text = ""
 
-with elements("style_mui_sx"):
-
-    # For Material UI elements, use the 'sx' property.
-    #
-    # <Box
-    #   sx={{
-    #     bgcolor: 'background.paper',
-    #     boxShadow: 1,
-    #     borderRadius: 2,
-    #     p: 2,
-    #     minWidth: 300,
-    #   }}
-    # >
-    #   Some text in a styled box
-    # </Box>
-
-    mui.Box(
-        "Some text in a styled box",
-        sx={
-            "bgcolor": "background.paper",
-            "boxShadow": 1,
-            "borderRadius": 2,
-            "p": 2,
-            "minWidth": 300,
-        }
-    )
-
-
-with elements("style_elements_css"):
-
-    # For any other element, use the 'css' property.
-    #
-    # <div
-    #   css={{
-    #     backgroundColor: 'hotpink',
-    #     '&:hover': {
-    #         color: 'lightgreen'
-    #     }
-    #   }}
-    # >
-    #   This has a hotpink background
-    # </div>
-
-    html.div(
-        "This has a hotpink background",
-        css={
-            "backgroundColor": "hotpink",
-            "&:hover": {
-                "color": "lightgreen"
-            }
-        }
-    )
+    mui.Typography(text)
+    mui.TextField(label="Input some text here", onChange=sync("my_event"))
 
 st_autorefresh(interval=2000, limit=100, key="dataframe")
 
