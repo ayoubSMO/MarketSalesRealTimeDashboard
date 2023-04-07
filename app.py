@@ -103,8 +103,6 @@ new_groupe = df_selection.groupby(by=["Product line"])
 new_groupe.aggregate(np.sum)
 new_groupe
 
-new_groupe["Total"]=new_groupe["Total"].astype(float)
-new_groupe["Product line"]=new_groupe["Product line"].astype(str)
 
 # SALES BY PRODUCT LINE [BAR CHART]
 sales_by_product_line = (
