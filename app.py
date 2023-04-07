@@ -9,6 +9,9 @@ from streamlit_elements import elements, mui, html, sync,editor, lazy,nivo
 import plotly.express as px  # pip install plotly-express
 
 
+st.set_page_config(page_title="hh", page_width=1200)
+
+
 
 
 # Function that fetch all data from snowflake table 
@@ -76,7 +79,7 @@ st.markdown("""---""")
 
 # SALES BY PRODUCT LINE [BAR CHART]
 sales_by_product_line = (
-    df_selection.groupby(by=["Product line"]).sum()[["Total"]].sort_values(by="Total")
+    df_selection.astype(float).groupby(by=["Product line"]).sum()[["Total"]].sort_values(by="Total")
 )
 fig_product_sales = px.bar(
     sales_by_product_line,
@@ -93,7 +96,7 @@ fig_product_sales.update_layout(
 )
 
 # SALES BY HOUR [BAR CHART]
-sales_by_hour = df_selection.groupby(by=["hour"]).astype(float).sum()[["Total"]]
+sales_by_hour = df_selection.astype(float).groupby(by=["hour"]).sum()[["Total"]]
 fig_hourly_sales = px.bar(
     sales_by_hour,
     x=sales_by_hour.index,
