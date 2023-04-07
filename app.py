@@ -21,7 +21,7 @@ data = pd.DataFrame(my_data_rows)
 data.columns = ["Invoice ID","Branch","City","Customer_type","Gender","Product line","Unit price","Quantity","Tax 5%","Total","Date","Time","Payment","cogs","gross margin percentage","gross income","Rating"]
 df = st.dataframe(data)
 dict_list = df.to_dict('records')
-json_list = json.dumps(dict_list)
+json_list = json.loads(df.to_json(orient='records'))
 
 with elements("nivo_charts"):
 
