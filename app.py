@@ -29,7 +29,7 @@ with elements("nivo_charts"):
 
     with mui.Box(sx={"height": 500}):
         nivo.Radar(
-            data=df,
+            data=df["City"],
             keys=[ "chardonay", "carmenere", "syrah" ],
             indexBy="taste",
             valueFormat=">-.2f",
