@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import requests
 import snowflake.connector
-import json
 from urllib.error import URLError
 from streamlit_autorefresh import st_autorefresh
 from streamlit_elements import elements, mui, html, sync,editor, lazy,nivo
@@ -20,15 +19,16 @@ my_data_rows= get_all_record_from_snowFlake()
 data = pd.DataFrame(my_data_rows) 
 data.columns = ["Invoice ID","Branch","City","Customer_type","Gender","Product line","Unit price","Quantity","Tax 5%","Total","Date","Time","Payment","cogs","gross margin percentage","gross income","Rating"]
 df = st.dataframe(data)
-dict_list = df.to_dict('records')
-json_list = json.loads(df.to_json(orient='records'))
+
+
+
 
 with elements("nivo_charts"):
 
     # Streamlit Elements includes 45 dataviz components powered by Nivo.
 
 
-    dataa = [
+    DATA = [
         { "taste": "fruity", "chardonay": 93, "carmenere": 61, "syrah": 114 },
         { "taste": "bitter", "chardonay": 91, "carmenere": 37, "syrah": 72 },
         { "taste": "heavy", "chardonay": 56, "carmenere": 95, "syrah": 99 },
