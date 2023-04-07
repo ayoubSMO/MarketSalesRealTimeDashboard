@@ -45,7 +45,7 @@ df_selection = data.query(
     "City == @city & Customer_type == @customer_type & Gender == @gender"
 )
 
-hh = df_selection["Total"].sum()
+hh = int(df_selection["Total"].sum())
 hh
 # ---- MAINPAGE ----
 st.title(":bar_chart: Sales Dashboard")
