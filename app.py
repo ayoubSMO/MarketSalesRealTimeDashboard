@@ -45,8 +45,8 @@ df_selection = data.query(
     "City == @city & Customer_type == @customer_type & Gender == @gender"
 )
 
-df_selection
-hh = int(df_selection["Total"]).sum()
+df_selection["Total"]
+hh = df_selection["Total"].sum()
 hh
 st_autorefresh(interval=2000, limit=100, key="dataframe")
 
