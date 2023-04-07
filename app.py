@@ -45,8 +45,18 @@ df_selection = data.query(
     "City == @city & Customer_type == @customer_type & Gender == @gender"
 )
 
-df_selection["Total"]
+# Check data type of 'Total' column
+tt = df_selection['Total'].dtype
+tt
+# Check for missing or invalid values in 'Total' column
+gg = df_selection['Total'].isnull().sum()
+gg
+
+
+# Check for syntax errors or typos in code
 hh = df_selection.loc[:, 'Total'].sum()
 hh
+
+
 st_autorefresh(interval=2000, limit=100, key="dataframe")
 
