@@ -18,66 +18,36 @@ data = pd.DataFrame(my_data_rows)
 data.columns = ["Invoice ID","Branch","City","Customer_type","Gender","Product line","Unit price","Quantity","Tax 5%","Total","Date","Time","Payment","cogs","gross margin percentage","gross income","Rating"]
 df = streamlit.dataframe(data)
 
-# First, import the elements you need
 
+with elements("properties"):
 
-# Create a frame where Elements widgets will be displayed.
-#
-# Elements widgets will not render outside of this frame.
-# Native Streamlit widgets will not render inside this frame.
-#
-# elements() takes a key as parameter.
-# This key can't be reused by another frame or Streamlit widget.
-
-with elements("multiple_children"):
-
-    # You have access to Material UI icons using: mui.icon.IconNameHere
+    # You can add properties to elements with named parameters.
     #
-    # Multiple children can be added in a single element.
+    # To find all available parameters for a given element, you can
+    # refer to its related documentation on mui.com for MUI widgets,
+    # on https://microsoft.github.io/monaco-editor/ for Monaco editor,
+    # and so on.
     #
-    # <Button>
-    #   <EmojiPeople />
-    #   <DoubleArrow />
-    #   Hello world
-    # </Button>
-
-    mui.Button(
-        mui.icon.EmojiPeople,
-        mui.icon.DoubleArrow,
-        "Button with multiple children"
-    )
-
-    # You can also add children to an element using a 'with' statement.
-    #
-    # <Button>
-    #   <EmojiPeople />
-    #   <DoubleArrow />
-    #   <Typography>
-    #     Hello world
-    #   </Typography>
-    # </Button>
-
-    with mui.Button:
-        mui.icon.EmojiPeople()
-        mui.icon.DoubleArrow()
-        mui.Typography("Button with multiple children")
-
-
-with elements("nested_children"):
-
-    # You can nest children using multiple 'with' statements.
-    #
-    # <Paper>
-    #   <Typography>
-    #     <p>Hello world</p>
-    #     <p>Goodbye world</p>
-    #   </Typography>
+    # <Paper elevation={3} variant="outlined" square>
+    #   <TextField label="My text input" defaultValue="Type here" variant="outlined" />
     # </Paper>
 
-    with mui.Paper:
-        with mui.Typography:
-            html.p("Hello world")
-            html.p("Goodbye world")
+    with mui.Paper(elevation=3, variant="outlined", square=True):
+        mui.TextField(
+            label="My text input",
+            defaultValue="Type here",
+            variant="outlined",
+        )
+
+    # If you must pass a parameter which is also a Python keyword, you can append an
+    # underscore to avoid a syntax error.
+    #
+    # <Collapse in />
+
+    mui.Collapse(in_=True)
+
+    # mui.collapse(in=True)
+    # > Syntax error: 'in' is a Python keyword:
 
 st_autorefresh(interval=2000, limit=100, key="dataframe")
 
