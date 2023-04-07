@@ -71,6 +71,7 @@ with right_column:
 st.markdown("##")
 
 
+df = st.dataframe(data)
 
 st.markdown("""---""")
 
