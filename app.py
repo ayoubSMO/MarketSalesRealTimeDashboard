@@ -24,7 +24,7 @@ data = pd.DataFrame(my_data_rows)
 data.columns = ["Invoice ID","Branch","City","Customer_type","Gender","Product line","Unit price","Quantity","Tax 5%","Total","Date","Time","Payment","cogs","gross margin percentage","gross income","Rating"]
 json_list = json.loads(data.to_json(orient='records'))
 
-pd.to_datetime(data["Time"], format="%H:%M:%S")
+pd.to_datetime(json_list["Time"], format="%H:%M:%S")
 
 
 
