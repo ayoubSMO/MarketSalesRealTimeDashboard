@@ -165,8 +165,8 @@ df = st.dataframe(data)
 
 fig = px.scatter(
     data,
-    x="Total",
-    y="Product line",
+    x=sales_by_hour,
+    y="Total",
     size="pop",
     color="continent",
     hover_name="City",
