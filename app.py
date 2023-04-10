@@ -154,7 +154,7 @@ fig_hourly_sales.update_layout(
 )
 left_column.plotly_chart(fig_hourly_sales, use_container_width=True)
 
-
+df = st.dataframe(data)
 
 
 
@@ -165,11 +165,11 @@ left_column.plotly_chart(fig_hourly_sales, use_container_width=True)
 
 fig = px.scatter(
     data,
-    x="gdpPercap",
-    y="lifeExp",
+    x="Total",
+    y="Hour",
     size="pop",
     color="continent",
-    hover_name="country",
+    hover_name="City",
     log_x=True,
     size_max=60,
 )
@@ -184,17 +184,6 @@ with tab2:
     st.plotly_chart(fig, theme=None, use_container_width=True)
 
 
-
-
-
-
-
-
-
-
-
-
-df = st.dataframe(data)
 
 
 st_autorefresh(interval=2000, limit=100, key="dataframe")
