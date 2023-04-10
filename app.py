@@ -154,7 +154,47 @@ fig_hourly_sales.update_layout(
 )
 left_column.plotly_chart(fig_hourly_sales, use_container_width=True)
 
-df = st.dataframe(df_selection)
+
+
+
+
+
+
+
+
+
+fig = px.scatter(
+    data,
+    x="gdpPercap",
+    y="lifeExp",
+    size="pop",
+    color="continent",
+    hover_name="country",
+    log_x=True,
+    size_max=60,
+)
+
+tab1, tab2 = st.tabs(["Streamlit theme (default)", "Plotly native theme"])
+with tab1:
+    # Use the Streamlit theme.
+    # This is the default. So you can also omit the theme argument.
+    st.plotly_chart(fig, theme="streamlit", use_container_width=True)
+with tab2:
+    # Use the native Plotly theme.
+    st.plotly_chart(fig, theme=None, use_container_width=True)
+
+
+
+
+
+
+
+
+
+
+
+
+df = st.dataframe(data)
 
 
 st_autorefresh(interval=2000, limit=100, key="dataframe")
@@ -172,6 +212,3 @@ st.markdown(
       </style> """, 
       unsafe_allow_html=True 
       )
-
-
-
