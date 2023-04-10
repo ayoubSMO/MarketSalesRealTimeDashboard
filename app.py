@@ -139,9 +139,9 @@ left_column, right_column = st.columns(2)
 left_column.plotly_chart(fig_hourly_sales, use_container_width=True)
 right_column.plotly_chart(fig_product_sales, use_container_width=True)
 
-# SALES BY HOUR [BAR line]
+# SALES BY HOUR [line]
 sales_by_hour = df_selection.groupby(by=["hour"]).sum()[["Total"]]
-fig_hourly_sales = px.bar(
+fig_hourly_sales = px.line(
     sales_by_hour,
     x=sales_by_hour.index,
     y="Total",
