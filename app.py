@@ -158,34 +158,6 @@ df = st.dataframe(data)
 
 
 
-
-
-
-
-
-fig = px.scatter(
-    data,
-    x=sales_by_hour.index,
-    y="Total",
-    size="pop",
-    color="continent",
-    hover_name="City",
-    log_x=True,
-    size_max=60,
-)
-
-tab1, tab2 = st.tabs(["Streamlit theme (default)", "Plotly native theme"])
-with tab1:
-    # Use the Streamlit theme.
-    # This is the default. So you can also omit the theme argument.
-    st.plotly_chart(fig, theme="streamlit", use_container_width=True)
-with tab2:
-    # Use the native Plotly theme.
-    st.plotly_chart(fig, theme=None, use_container_width=True)
-
-
-
-
 st_autorefresh(interval=2000, limit=100, key="dataframe")
 
 st.markdown( 
