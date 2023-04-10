@@ -154,7 +154,11 @@ fig_hourly_sales.update_layout(
 )
 
 left_column.plotly_chart(fig_hourly_sales, use_container_width=True)
-
+fig_hourly_sales.add_trace(go.Scatter(
+    x=sales_by_hour, y="Total",
+    line_color='rgb(0,176,246)',
+    name='Premium',
+))
 df = st.dataframe(data)
 
 
