@@ -125,12 +125,12 @@ fig_hourly_sales = px.bar(
     x=sales_by_hour.index,
     y="Total",
     title="<b>Sales by hour</b>",
-    color_discrete_sequence=["#0083B8"] * len(sales_by_hour),
+    color_discrete_sequence=["#FF4500"] * len(sales_by_hour),
     template="plotly_white",
 )
 fig_hourly_sales.update_layout(
     xaxis=dict(tickmode="linear"),
-    plot_bgcolor="#1E1E1E",
+    plot_bgcolor="rgba(0,0,0,0),
     yaxis=(dict(showgrid=False)),
 )
 
