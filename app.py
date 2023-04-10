@@ -110,7 +110,7 @@ fig_product_sales = px.bar(
     y=sales_by_product_line.index,
     orientation="h",
     title="<b>Sales by Product Line</b>",
-    color_discrete_sequence=["#0083B8"] * len(sales_by_product_line),
+    color_discrete_sequence=["#00FF7F"] * len(sales_by_product_line),
     template="plotly_white",
 )
 fig_product_sales.update_layout(
