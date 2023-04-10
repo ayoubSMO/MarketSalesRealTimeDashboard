@@ -154,7 +154,7 @@ fig_hourly_sales.update_layout(
 )
 left_column.plotly_chart(fig_hourly_sales, use_container_width=True)
 
-df = st.dataframe(data)
+df = st.dataframe(df_selection)
 
 
 st_autorefresh(interval=2000, limit=100, key="dataframe")
