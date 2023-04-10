@@ -165,7 +165,7 @@ df = st.dataframe(data)
 
 fig = px.scatter(
     data,
-    x=sales_by_hour,
+    x=sales_by_hour.index,
     y="Total",
     size="pop",
     color="continent",
