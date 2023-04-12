@@ -167,6 +167,15 @@ right_column.plotly_chart(fig, use_container_width=True)
 
 
 df = st.dataframe(data)
+df.head(10).style.format({"BasePay": "${:20,.0f}", 
+                          "OtherPay": "${:20,.0f}", 
+                          "TotalPay": "${:20,.0f}",
+                          "TotalPayBenefits":"${:20,.0f}"})\
+                 .format({"JobTitle": lambda x:x.lower(),
+                          "EmployeeName": lambda x:x.lower()})\
+                 .hide_index()\
+                 .background_gradient(cmap='Blues')
+
 
 pd.set_option('display.max_rows', None)  # Display all rows
 pd.set_option('display.max_columns', None)  # Display all columns
