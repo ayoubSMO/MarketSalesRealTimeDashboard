@@ -146,7 +146,7 @@ fig_hourly_sales = px.line(
     x=sales_by_hour.index,
     y="Total",
     color_discrete_sequence=["#4B0082"] * len(sales_by_hour),
-    marker=dict(color='blue')
+    
 )
 fig_hourly_sales.update_layout(
     xaxis=dict(tickmode="linear"),
