@@ -158,7 +158,7 @@ left_column.plotly_chart(fig_hourly_sales, use_container_width=True)
 
 sales_per_city = df_selection.groupby(by=["City"]).sum()[["Total"]]
 fig = px.pie(
-    sales_by_city,
+    sales_per_city,
     values='Total',
     names=sales_by_city.index,
     title='Sales per City'
