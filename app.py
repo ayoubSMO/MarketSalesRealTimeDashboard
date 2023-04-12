@@ -88,10 +88,20 @@ st.title(":bar_chart: Market Sales Dashboard")
 st.markdown("##")
 
 # TOP KPI's
+st.markdown(
+    """
+    <style>
+    .star-rating {
+        color: #f47c13;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 total_sales = int(df_selection["Total"].astype(float).sum())
 average_rating = round(df_selection["Rating"].astype(float).mean(), 1)
-star_rating = f'<span style="color: #f47c13">{":star:" * int(round(average_rating, 0))}</span>'
-st.markdown(star_rating, unsafe_allow_html=True)
+star_rating = ":star:" * int(round(average_rating, 0))
 average_sale_by_transaction = round(df_selection["Total"].astype(float).mean(), 2)
 
 left_column, middle_column, right_column = st.columns(3)
