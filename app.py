@@ -92,7 +92,10 @@ st.markdown("##")
 total_sales = int(df_selection["Total"].astype(float).sum())
 average_rating = round(df_selection["Rating"].astype(float).mean(), 1)
 star_rating = ":star:" * int(round(average_rating, 0))
-star_rating = f'<span style="color: #f47c13">{"https://www.iconsdb.com/icons/preview/color/F47C13/star-xxl.png" * int(round(average_rating, 0))}</span>'
+star_rating = f'<span style="color: #f47c13">{"st.image(
+            "https://www.iconsdb.com/icons/preview/color/F47C13/star-xxl.png",
+            width=20, # Manually Adjust the width of the image as per requirement
+        )" * int(round(average_rating, 0))}</span>'
 
 average_sale_by_transaction = round(df_selection["Total"].astype(float).mean(), 2)
 
