@@ -92,7 +92,7 @@ st.markdown(
     """
 <style>
 .st-Rating span svg path {
-        fill: yellow !important;
+        fill: #f47c13 !important;
     }
 </style>
 """,
