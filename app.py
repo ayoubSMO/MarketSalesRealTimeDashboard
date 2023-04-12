@@ -175,9 +175,6 @@ pd.set_option('display.precision', 2)  # Set the precision of floating-point num
 
 
 
-# Display the styled DataFrame
-styled_df
-
 st_autorefresh(interval=20000, limit=100, key="dataframe")
 
 st.markdown( 
