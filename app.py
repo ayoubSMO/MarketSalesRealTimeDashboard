@@ -91,9 +91,9 @@ st.markdown("##")
 st.markdown(
     """
 <style>
-span[data-baseweb="tag"] {
-  background-color: #4b84ec !important;
-}
+.st-Rating span svg path {
+        fill: yellow !important;
+    }
 </style>
 """,
     unsafe_allow_html=True,
