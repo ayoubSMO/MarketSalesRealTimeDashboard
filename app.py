@@ -162,6 +162,7 @@ fig = px.pie(
     values='Total',
     names=sales_per_city.index,
     title='Sales per City',
+    pull=[0, 0, 0.2, 0]
 )
 right_column.plotly_chart(fig, use_container_width=True)
 
