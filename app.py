@@ -145,6 +145,7 @@ fig_hourly_sales = px.line(
     sales_by_hour,
     x=sales_by_hour.index,
     y="Total",
+    title="<b>Sales by hour</b>",
     color_discrete_sequence=["#4B0082"] * len(sales_by_hour),
     
 )
