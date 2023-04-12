@@ -159,7 +159,7 @@ left_column.plotly_chart(fig_hourly_sales, use_container_width=True)
 dff = px.data.gapminder().query("year == 2007").query("continent == 'Europe'")
 dff.loc[dff['pop'] < 2.e6, 'country'] = 'Other countries'
 fig = px.pie(dff, values='pop', names='country', title='Population of European continent')
-fig.show()
+left_column.plotly_chart(fig, use_container_width=True)
 
 df = st.dataframe(data)
 
