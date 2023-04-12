@@ -44,12 +44,12 @@ data["gross margin percentage"]=data["gross margin percentage"].astype(float)
 data["Rating"]=data["Rating"].astype(float)
 
 
-
-st.sidebar.header("Please Filter Here:")
 st.sidebar.image(
             "https://mail.google.com/mail/u/0?ui=2&ik=f84a0aba7a&attid=0.1&permmsgid=msg-f:1751659840764464914&th=184f255830154f12&view=fimg&fur=ip&sz=s0-l75-ft&attbid=ANGjdJ9MhmfflXcF02tA97hulNBaLi8lPU9KhZ-nmoiOaK7jzKLWhvQKX0HntrVgz060igt8PIgAlq67QA1VcRGbTbgVepyHwed_J6PwrX71ytzrDgckUXZrOhjFepU&disp=emb",
             width=200, # Manually Adjust the width of the image as per requirement
         )
+st.sidebar.header("Please Filter Here:")
+
 city = st.sidebar.multiselect(
     "Select the City:",
     options=data["City"].unique(),
