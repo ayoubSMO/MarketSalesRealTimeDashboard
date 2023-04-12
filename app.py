@@ -163,7 +163,7 @@ fig = px.pie(
     names=sales_per_city.index,
     title='Sales per City',
     startangle=90, shadow = True, explode = (0, 0, 0.1, 0),
-    radius = 1.2, autopct = '%1.1f%%
+    radius = 1.2
 )
 right_column.plotly_chart(fig, use_container_width=True)
 
