@@ -177,7 +177,10 @@ pd.set_option('display.width', 1000)  # Set the width of the display
 pd.set_option('display.precision', 2)  # Set the precision of floating-point numbers
 
 
-
+st.image(
+            "https://s3-us-west-2.amazonaws.com/uw-s3-cdn/wp-content/uploads/sites/6/2017/11/04133712/waterfall.jpg",
+            width=400, # Manually Adjust the width of the image as per requirement
+        )
 st_autorefresh(interval=20000, limit=100, key="dataframe")
 
 st.markdown( 
