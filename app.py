@@ -145,13 +145,14 @@ fig_hourly_sales = px.line(
     sales_by_hour,
     x=sales_by_hour.index,
     y="Total",
-    color_discrete_sequence=["#4B0082"] * len(sales_by_hour)
+    color_discrete_sequence=["#4B0082"] * len(sales_by_hour),
+    marker=dict(color='blue')
 )
 fig_hourly_sales.update_layout(
     xaxis=dict(tickmode="linear"),
     plot_bgcolor="rgba(0,0,0,0)",
     yaxis=(dict(showgrid=False)),
-    markerfacecolor='blue',
+   
 )
 left_column.plotly_chart(fig_hourly_sales, use_container_width=True)
 
