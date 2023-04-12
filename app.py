@@ -91,7 +91,7 @@ st.markdown("##")
 st.markdown(
     """
 <style>
-.st-Rating span svg path {
+.star_rating span svg path {
         fill: #f47c13 !important;
     }
 </style>
