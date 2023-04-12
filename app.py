@@ -53,7 +53,8 @@ st.sidebar.header("Please Filter Here:")
 city = st.sidebar.multiselect(
     "Select the City:",
     options=data["City"].unique(),
-    default=data["City"].unique()
+    default=data["City"].unique(),
+    format_func=lambda x: f'<span style="background-color: yellow">{x}</span>' if x in city else x
 )
 
 customer_type = st.sidebar.multiselect(
