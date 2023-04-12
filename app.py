@@ -160,7 +160,7 @@ sales_per_city = df_selection.groupby(by=["City"]).sum()[["Total"]]
 fig = px.pie(
     sales_per_city,
     values='Total',
-    names=sales_by_city.index,
+    names=sales_per_city.index,
     title='Sales per City'
 )
 right_column.plotly_chart(fig, use_container_width=True)
