@@ -21,7 +21,7 @@ def get_all_record_from_snowFlake():
 
 my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
 my_data_rows= get_all_record_from_snowFlake()
-data = pd.DataFrame(my_data_rows) 
+data = pd.DataFrame(my_data_rows)
 data.columns = ["Invoice ID","Branch","City","Customer_type","Gender","Product line","Unit price","Quantity","Tax 5%","Total","Date","Time","Payment","cogs","gross margin percentage","gross income","Rating"]
 json_list = json.loads(data.to_json(orient='records'))
 
@@ -158,7 +158,7 @@ df = st.dataframe(data)
 
 
 
-st_autorefresh(interval=2000, limit=100, key="dataframe")
+st_autorefresh(interval=20000, limit=100, key="dataframe")
 
 st.markdown( 
    f""" 
