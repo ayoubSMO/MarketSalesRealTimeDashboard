@@ -91,6 +91,7 @@ st.markdown("##")
 total_sales = int(df_selection["Total"].astype(float).sum())
 average_rating = round(df_selection["Rating"].astype(float).mean(), 1)
 star_rating = f'<span style="color: #f47c13">{":star:" * int(round(average_rating, 0))}</span>'
+st.markdown(star_rating, unsafe_allow_html=True)
 average_sale_by_transaction = round(df_selection["Total"].astype(float).mean(), 2)
 
 left_column, middle_column, right_column = st.columns(3)
