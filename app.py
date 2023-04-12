@@ -168,7 +168,7 @@ right_column.plotly_chart(fig, use_container_width=True)
 
 
 with left_column:
-    st.subheader("Filtred Data:"))
+    st.subheader("Filtred Data:")
 df = st.dataframe(data)
 
 pd.set_option('display.max_rows', None)  # Display all rows
