@@ -50,6 +50,16 @@ st.sidebar.image(
         )
 st.sidebar.header("Please Filter Here:")
 
+st.markdown(
+    """
+<style>
+span[data-baseweb="tag"] {
+  background-color: blue !important;
+}
+</style>
+""",
+    unsafe_allow_html=True,
+)
 city = st.sidebar.multiselect(
     "Select the City:",
     options=data["City"].unique(),
