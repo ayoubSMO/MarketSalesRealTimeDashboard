@@ -162,13 +162,43 @@ fig = px.pie(
     values='Total',
     names=sales_per_city.index,
     title='Sales per City',
-    pull=[0, 0, 0.2, 0]
 )
 right_column.plotly_chart(fig, use_container_width=True)
 
+
 df = st.dataframe(data)
 
+pd.set_option('display.max_rows', None)  # Display all rows
+pd.set_option('display.max_columns', None)  # Display all columns
+pd.set_option('display.width', 1000)  # Set the width of the display
+pd.set_option('display.precision', 2)  # Set the precision of floating-point numbers
 
+# Add some styling to the DataFrame
+styled_df = df.style\
+    .background_gradient(cmap='Blues', subset=['Salary'])\
+    .format({'Salary': '${:,.2f}'})\
+    .set_caption('Employee Data')\
+    .set_table_styles([{
+        'selector': 'caption',
+        'props': [
+            ('color', 'darkblue'),
+            ('font-size', '24px'),
+            ('font-weight', 'bold'),
+            ('text-align', 'center')
+        ]
+    }, {
+        'selector': 'th',
+        'props': [
+            ('background-color', 'lightblue'),
+            ('color', 'navy'),
+            ('font-size', '18px'),
+            ('font-weight', 'bold'),
+            ('text-align', 'center')
+        ]
+    }])
+
+# Display the styled DataFrame
+styled_df
 
 st_autorefresh(interval=20000, limit=100, key="dataframe")
 
