@@ -46,6 +46,10 @@ data["Rating"]=data["Rating"].astype(float)
 
 
 st.sidebar.header("Please Filter Here:")
+st.image(
+            "https://mail.google.com/mail/u/0?ui=2&ik=f84a0aba7a&attid=0.1&permmsgid=msg-f:1751659840764464914&th=184f255830154f12&view=fimg&fur=ip&sz=s0-l75-ft&attbid=ANGjdJ9MhmfflXcF02tA97hulNBaLi8lPU9KhZ-nmoiOaK7jzKLWhvQKX0HntrVgz060igt8PIgAlq67QA1VcRGbTbgVepyHwed_J6PwrX71ytzrDgckUXZrOhjFepU&disp=emb",
+            width=400, # Manually Adjust the width of the image as per requirement
+        )
 city = st.sidebar.multiselect(
     "Select the City:",
     options=data["City"].unique(),
@@ -177,10 +181,7 @@ pd.set_option('display.width', 1000)  # Set the width of the display
 pd.set_option('display.precision', 2)  # Set the precision of floating-point numbers
 
 
-st.image(
-            "https://s3-us-west-2.amazonaws.com/uw-s3-cdn/wp-content/uploads/sites/6/2017/11/04133712/waterfall.jpg",
-            width=400, # Manually Adjust the width of the image as per requirement
-        )
+
 st_autorefresh(interval=20000, limit=100, key="dataframe")
 
 st.markdown( 
