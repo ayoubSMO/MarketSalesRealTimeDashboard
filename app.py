@@ -151,7 +151,7 @@ fig_hourly_sales.update_layout(
     xaxis=dict(tickmode="linear"),
     plot_bgcolor="rgba(0,0,0,0)",
     yaxis=(dict(showgrid=False)),
-    width=1200
+    markerfacecolor='blue',
 )
 left_column.plotly_chart(fig_hourly_sales, use_container_width=True)
 
