@@ -156,9 +156,8 @@ fig_hourly_sales.update_layout(
 )
 left_column.plotly_chart(fig_hourly_sales, use_container_width=True)
 
-dff = px.data.gapminder().query("year == 2007").query("continent == 'Europe'")
-dff.loc[dff['pop'] < 2.e6, 'country'] = 'Other countries'
-fig = px.pie(dff, values='pop', names='country', title='Population of European continent')
+sales_per_city = df_selection.groupby(by=["City"]).sum()[["Total"]]
+fig = px.pie(sales_per_city, values='Total_Sales', names='City', title='Sales per City')
 right_column.plotly_chart(fig, use_container_width=True)
 
 df = st.dataframe(data)
