@@ -8,9 +8,7 @@ from streamlit_autorefresh import st_autorefresh
 from streamlit_elements import elements, mui, html, sync,editor, lazy,nivo
 import plotly.express as px  # pip install plotly-express
 import numpy as np 
-import streamlit_themes as stt
 
-stt.set_theme({"primary": "#007bff"})
 st.set_page_config(page_title="Market Sales Dashboard", page_icon=":bar_chart:", layout="wide")
 
 
