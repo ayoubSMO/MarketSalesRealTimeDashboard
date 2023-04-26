@@ -192,9 +192,6 @@ pd.set_option('display.width', 1000)  # Set the width of the display
 pd.set_option('display.precision', 2)  # Set the precision of floating-point numbers
 
 
-fig = px.scatter(sales_per_city, x="gdpPercap", y="lifeExp", size="pop", color="continent",
-           hover_name="country", log_x=True, size_max=60)
-fig.show()
 
 st_autorefresh(interval=20000, limit=100, key="dataframe")
 
