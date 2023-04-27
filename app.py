@@ -9,10 +9,7 @@ from streamlit_elements import elements, mui, html, sync,editor, lazy,nivo
 import plotly.express as px  # pip install plotly-express
 import numpy as np 
 
-st.set_page_config(page_title="Market Sales Dashboard", page_icon=":bar_chart:", layout="wide", header={
-        "background_image": "https://bellintegrator.com/catalog/view/theme/bellOne/image/products/Business_Performance_Management.jpg",
-        "use_column_width": True,
-    })
+st.set_page_config(page_title="Market Sales Dashboard", page_icon=":bar_chart:", layout="wide")
 
 
 # Function that fetch all data from snowflake table 
