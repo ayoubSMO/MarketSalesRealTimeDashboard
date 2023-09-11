@@ -25,7 +25,7 @@ data.columns = ["Invoice ID","Branch","City","Customer_type","Gender","Product l
 json_list = json.loads(data.to_json(orient='records'))
 
 data["hour"] = pd.to_datetime(data["Time"]).dt.hour
-data["hour"] = data["hour"].astype(int)
+#data["hour"] = data["hour"].astype(int)
 
 data["Invoice ID"] =data["Invoice ID"].astype(str)
 data["Branch"]=data["Branch"].astype(str)
